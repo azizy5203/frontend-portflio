@@ -114,16 +114,20 @@ function isActive(sectionId: PortfolioSectionId): boolean {
 }
 
 .portfolio-bottom-nav__row {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   align-items: center;
-  justify-content: space-between;
+  justify-items: center;
   gap: 0.125rem;
   padding: 0.5rem 0.5rem 0.35rem;
 }
 
 .portfolio-bottom-nav__btn {
-  flex: 1;
-  min-width: 0;
+  flex: none;
+  width: 2.75rem;
+  min-width: 2.75rem;
+  max-width: 100%;
+  justify-content: center;
   color: var(--ui-text-muted);
   border-radius: 0.75rem;
   transition:

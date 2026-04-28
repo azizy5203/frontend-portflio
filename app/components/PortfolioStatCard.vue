@@ -5,6 +5,7 @@ const props = withDefaults(
     suffix: string
     label: string
     aosDelay?: number
+    layoutSpan?: 'full-row'
   }>(),
   { aosDelay: 80 }
 )
@@ -21,6 +22,7 @@ const { displayValue } = useStatCounter({
   <div
     ref="rootRef"
     class="rounded-xl border border-[var(--ui-border)] bg-[var(--portfolio-surface)] px-5 py-4"
+    :class="{ 'max-sm:col-span-2': props.layoutSpan === 'full-row' }"
     data-aos="fade-up"
     :data-aos-delay="aosDelay"
   >
