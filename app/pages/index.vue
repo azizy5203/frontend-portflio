@@ -181,7 +181,7 @@ onMounted(() => {
         <ol class="relative space-y-10 border-s border-[var(--ui-border)] ps-8 md:ps-10">
           <li
             v-for="(job, index) in content.experiences"
-            :key="index"
+            :key="`${job.period}-${job.role}-${job.company}`"
             class="relative"
             data-aos="fade-up"
             :data-aos-delay="index * 80"
@@ -196,6 +196,19 @@ onMounted(() => {
             <h3 class="mt-2 text-xl font-semibold text-[var(--ui-text)]">
               {{ job.role }}
             </h3>
+            <p class="mt-1 text-sm font-medium text-[var(--ui-text-muted)]">
+              <ULink
+                v-if="job.companyHref"
+                :to="job.companyHref"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1 hover:text-[var(--portfolio-accent)]"
+              >
+                {{ job.company }}
+                <span class="text-xs font-normal" aria-hidden="true">↗</span>
+              </ULink>
+              <span v-else>{{ job.company }}</span>
+            </p>
             <p class="mt-3 max-w-3xl text-pretty text-[var(--ui-text-muted)]">
               {{ job.description }}
             </p>

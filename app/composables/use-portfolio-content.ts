@@ -14,6 +14,10 @@ export interface PortfolioStat {
 export interface PortfolioExperience {
   readonly period: string
   readonly role: string
+  /** Employer name (aligned with elegant-engineer reference portfolio) */
+  readonly company: string
+  /** Optional company website */
+  readonly companyHref?: string
   readonly description: string
 }
 
@@ -83,18 +87,24 @@ const portfolioContent: PortfolioContent = {
     {
       period: 'Dec 2025 – Present',
       role: 'Frontend Engineer',
+      company: 'Robusta Technology Group',
+      companyHref: 'https://robustagroup.com/',
       description:
         'Serving as frontend engineer on a production e-commerce platform. Handling daily maintenance, bug fixes, and feature improvements across product management, checkout, payments, and profiles.'
     },
     {
       period: 'May 2023 – Nov 2025',
       role: 'Frontend Engineer',
+      company: 'Future Face',
+      companyHref: 'https://futureface.sa/',
       description:
         'Developed key features for an enterprise-scale Vue.js app. Optimized performance and build tooling, speeding the build process by 90%. Mentored junior developers.'
     },
     {
       period: 'Jan 2023 – Apr 2023',
       role: 'Frontend Intern',
+      company: 'Sindion Technology',
+      companyHref: 'https://sindion.com/',
       description:
         'Converted UI designs into functional SPAs using Vue.js, Bootstrap, SCSS, and Pinia. Collaborated with backend developers for smooth API integrations.'
     }
