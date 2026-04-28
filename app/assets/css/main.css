@@ -1,2 +1,40 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+
+:root {
+  --portfolio-accent: #c4f542;
+  --portfolio-accent-muted: color-mix(in oklab, var(--portfolio-accent) 75%, white);
+  --portfolio-surface: color-mix(in oklab, var(--ui-bg) 92%, var(--portfolio-accent) 8%);
+  --portfolio-border-glow: color-mix(in oklab, var(--portfolio-accent) 35%, transparent);
+}
+
+.dark {
+  --portfolio-accent: #c4f542;
+  --portfolio-accent-muted: color-mix(in oklab, var(--portfolio-accent) 70%, #1a1a1a);
+  --portfolio-surface: color-mix(in oklab, var(--ui-bg) 94%, var(--portfolio-accent) 6%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.font-display {
+  font-family: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+.portfolio-marquee {
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+.portfolio-marquee-track {
+  animation: portfolio-marquee 40s linear infinite;
+}
+
+@keyframes portfolio-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
