@@ -8,6 +8,7 @@ const isExternalLink = (to: string): boolean => to.startsWith('http')
     <UHeader
       :title="site.siteName"
       to="/"
+      :toggle="false"
       class="border-b border-[var(--ui-border)]"
     >
       <template #right>
@@ -52,53 +53,16 @@ const isExternalLink = (to: string): boolean => to.startsWith('http')
           <UColorModeButton aria-label="Toggle color mode" />
         </div>
       </template>
-
-      <template #body>
-        <nav
-          class="flex flex-col gap-1 p-4 md:hidden"
-          aria-label="Primary mobile"
-        >
-          <UButton
-            v-for="item in site.navItems"
-            :key="`m-${item.to}`"
-            :to="item.to"
-            :target="item.external || isExternalLink(item.to) ? '_blank' : undefined"
-            variant="ghost"
-            color="neutral"
-            block
-          >
-            {{ item.label }}
-          </UButton>
-          <div class="mt-2 flex gap-2 border-t border-[var(--ui-border)] pt-4">
-            <UButton
-              :to="site.socialGithubUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              icon="i-lucide-github"
-              color="neutral"
-              variant="soft"
-              aria-label="GitHub profile"
-            />
-            <UButton
-              :to="site.socialLinkedInUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              icon="i-lucide-linkedin"
-              color="neutral"
-              variant="soft"
-              aria-label="LinkedIn profile"
-            />
-            <UColorModeButton aria-label="Toggle color mode" />
-          </div>
-        </nav>
-      </template>
     </UHeader>
 
     <UMain class="flex-1">
       <slot />
     </UMain>
 
-    <UFooter class="border-t border-[var(--ui-border)]">
+    <PortfolioBackToTop />
+    <PortfolioMobileBottomNav />
+
+    <UFooter class="border-t border-[var(--ui-border)] max-md:pb-[calc(5rem+env(safe-area-inset-bottom,0px))]">
       <template #left>
         <p class="text-muted text-sm">
           © {{ new Date().getFullYear() }} {{ site.siteName }}

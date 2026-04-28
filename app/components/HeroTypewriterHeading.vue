@@ -12,12 +12,18 @@ useHeroTypewriter({
 </script>
 
 <template>
-  <span class="inline-flex flex-wrap items-baseline gap-0">
-    <span ref="typeContainerRef" class="inline min-h-[1em]" aria-hidden="true" />
+  <span class="hero-typewriter inline-flex flex-wrap items-center gap-0">
+    <span ref="typeContainerRef" class="hero-typewriter__chars inline min-h-[1em]" aria-hidden="true" />
     <span
-      class="hero-typewriter-cursor inline text-[var(--portfolio-accent)]"
+      class="hero-typewriter-cursor inline-flex h-[0.85em] min-w-[0.35ch] items-center justify-center self-center font-semibold leading-none text-[var(--portfolio-accent)]"
       aria-hidden="true"
     >{{ parsed.cursorChar }}</span>
     <span class="sr-only">{{ parsed.typingPart }}</span>
   </span>
 </template>
+
+<style lang="scss" scoped>
+.hero-typewriter__chars :deep(span) {
+  vertical-align: baseline;
+}
+</style>
