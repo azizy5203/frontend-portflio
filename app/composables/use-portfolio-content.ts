@@ -2,7 +2,10 @@
  * Portfolio sections content (mirrors previous elegant-engineer portfolio).
  */
 export interface PortfolioStat {
-  readonly value: string
+  /** Whole number shown in the stat; animates from 0 on the client */
+  readonly numericValue: number
+  /** Appended after the number, e.g. "+" for "3+" */
+  readonly suffix: string
   readonly label: string
 }
 
@@ -47,9 +50,9 @@ const portfolioContent: PortfolioContent = {
   heroLead:
     'Crafting high-performance, visually striking interfaces from complex ideas.',
   stats: [
-    { value: '3+', label: 'Years Exp.' },
-    { value: '20+', label: 'Dev Tools' },
-    { value: '4+', label: 'Projects' }
+    { numericValue: 3, suffix: '+', label: 'Years Exp.' },
+    { numericValue: 20, suffix: '+', label: 'Dev Tools' },
+    { numericValue: 4, suffix: '+', label: 'Projects' }
   ],
   currentRoleLabel: 'Current Role',
   currentRoleCompany: 'Robusta Tech',

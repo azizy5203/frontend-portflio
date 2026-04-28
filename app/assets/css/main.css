@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+@import "aos/dist/aos.css";
 
 :root {
   --portfolio-accent: #c4f542;
@@ -37,4 +38,58 @@ html {
   100% {
     transform: translateX(-50%);
   }
+}
+
+@keyframes hero-cursor-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.hero-typewriter-cursor {
+  animation: hero-cursor-blink 1s step-end infinite;
+}
+
+.portfolio-btn-gradient-solid {
+  background: linear-gradient(
+    135deg,
+    var(--portfolio-accent) 0%,
+    color-mix(in oklab, var(--portfolio-accent) 65%, #7cb342) 45%,
+    color-mix(in oklab, var(--portfolio-accent) 80%, #e8f5a0) 100%
+  );
+  background-size: 200% 200%;
+  transition: background-position 0.35s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.portfolio-btn-gradient-solid:hover {
+  background-position: 100% 50%;
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--portfolio-accent) 50%, transparent),
+    0 12px 32px color-mix(in oklab, var(--portfolio-accent) 35%, transparent);
+}
+
+.portfolio-btn-gradient-outline {
+  background: linear-gradient(
+    var(--ui-bg),
+    var(--ui-bg)
+  )
+    padding-box,
+    linear-gradient(
+      125deg,
+      color-mix(in oklab, var(--portfolio-accent) 70%, transparent),
+      color-mix(in oklab, var(--portfolio-accent) 40%, #6366f1),
+      color-mix(in oklab, var(--portfolio-accent) 55%, transparent)
+    )
+    border-box;
+  border: 2px solid transparent;
+  transition: box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+.portfolio-btn-gradient-outline:hover {
+  box-shadow: 0 8px 28px color-mix(in oklab, var(--portfolio-accent) 22%, transparent);
 }
