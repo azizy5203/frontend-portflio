@@ -1,0 +1,60 @@
+---
+description: TypeScript standards for the portfolio project
+globs: "**/*.ts,**/*.vue"
+alwaysApply: false
+---
+
+# TypeScript Rules
+
+## Strictness
+- `strict: true` is enabled — no workarounds
+- Never use `any` — use `unknown` with type guards, or model the type properly
+- No non-null assertions (`!`) unless you can prove it's safe with a comment explaining why
+- No `// @ts-ignore` or `// @ts-expect-error` without a comment
+
+## Types & Interfaces
+- Prefer `interface` for object shapes that may be extended
+- Use `type` for unions, intersections, and utility types
+- All types/interfaces go in `types/` directory, grouped by domain:
+  - `types/project.ts` — Project, ProjectTag, ProjectLink
+  - `types/skill.ts` — Skill, SkillCategory
+  - `types/api.ts` — API response wrappers
+
+## Composables
+- Always return typed refs/computed — never `Ref<any>`
+- Use `MaybeRef<T>` from Vue when accepting reactive or plain values
+- Example:
+```ts
+// composables/useProjects.ts
+import type { Project } from '~/types/project'
+
+export function useProjects() {
+  const projects = ref<Project[]>([])
+  const loading = ref(false)
+
+  async function fetchProjects() {
+    loading.value = true
+    const data = await $fetch<Project[]>('/api/projects')
+    projects.value = data
+    loading.value = false
+  }
+
+  return { projects: readonly(projects), loading: readonly(loading), fetchProjects }
+}
+```
+
+## API / $fetch
+- Always type the response: `$fetch<ResponseType>(url)`
+- Handle errors with try/catch or `useFetch`'s `error` ref
+- Never trust API response shape without typing it
+
+## Enums
+- Prefer `const` object + `typeof` union over TypeScript enums:
+```ts
+// ✅ Preferred
+export const ProjectStatus = { Active: 'active', Archived: 'archived' } as const
+export type ProjectStatus = typeof ProjectStatus[keyof typeof ProjectStatus]
+
+// ❌ Avoid
+enum ProjectStatus { Active = 'active', Archived = 'archived' }
+```
