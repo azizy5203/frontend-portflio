@@ -1,5 +1,5 @@
 /**
- * Site-wide portfolio copy and navigation (replace with your details).
+ * Site-wide portfolio copy and navigation.
  */
 export interface SiteNavItem {
   readonly label: string
@@ -15,21 +15,29 @@ export interface SiteProfile {
   readonly navItems: readonly SiteNavItem[]
   readonly socialGithubUrl: string
   readonly socialLinkedInUrl: string
+  readonly email: string
+  readonly phoneDisplay: string
+  readonly phoneTel: string
 }
 
 const siteProfile: SiteProfile = {
-  siteName: 'Portfolio',
-  title: 'Your Name',
-  tagline: 'Frontend developer',
+  siteName: 'Youssuf Abdulaziz',
+  title: 'Youssuf Abdulaziz',
+  tagline: 'Frontend Engineer',
   heroDescription:
-    'I build fast, accessible web interfaces with Vue, Nuxt, and TypeScript. This site is a starting point—swap in your projects, bio, and links.',
+    'Crafting high-performance, visually striking interfaces from complex ideas.',
   navItems: [
-    { label: 'Home', to: '/' },
-    { label: 'Projects', to: '/#projects' },
+    { label: 'Home', to: '/#top' },
+    { label: 'Experience', to: '/#experience' },
+    { label: 'Work', to: '/#projects' },
+    { label: 'Arsenal', to: '/#arsenal' },
     { label: 'Contact', to: '/#contact' }
   ],
-  socialGithubUrl: 'https://github.com',
-  socialLinkedInUrl: 'https://linkedin.com'
+  socialGithubUrl: 'https://github.com/azizy5203',
+  socialLinkedInUrl: 'https://www.linkedin.com/in/youssuf-abdulaziz/',
+  email: 'youssufabdulaziz@gmail.com',
+  phoneDisplay: '+20 106 529 2537',
+  phoneTel: '+201065292537'
 }
 
 export function useSiteProfile(): Readonly<SiteProfile> {
