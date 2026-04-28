@@ -114,13 +114,14 @@ onMounted(() => {
             {{ link.label }}
           </UButton>
         </div>
-        <div class="portfolio-hero-in mt-14 grid gap-4 sm:grid-cols-3">
+        <div class="portfolio-hero-in mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3">
           <PortfolioStatCard
             v-for="(stat, statIndex) in content.stats"
             :key="stat.label"
             :numeric-value="stat.numericValue"
             :suffix="stat.suffix"
             :label="stat.label"
+            :layout-span="stat.layoutSpan"
             :aos-delay="80 + statIndex * 100"
           />
         </div>

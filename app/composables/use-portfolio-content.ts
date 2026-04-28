@@ -7,6 +7,8 @@ export interface PortfolioStat {
   /** Appended after the number, e.g. "+" for "3+" */
   readonly suffix: string
   readonly label: string
+  /** On narrow viewports, span both columns of the hero stats grid */
+  readonly layoutSpan?: 'full-row'
 }
 
 export interface PortfolioExperience {
@@ -52,7 +54,7 @@ const portfolioContent: PortfolioContent = {
   stats: [
     { numericValue: 3, suffix: '+', label: 'Years Exp.' },
     { numericValue: 20, suffix: '+', label: 'Dev Tools' },
-    { numericValue: 4, suffix: '+', label: 'Projects' }
+    { numericValue: 4, suffix: '+', label: 'Projects', layoutSpan: 'full-row' }
   ],
   currentRoleLabel: 'Current Role',
   currentRoleCompany: 'Robusta Tech',
