@@ -58,7 +58,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="top" class="font-display">
+  <div id="top" class="portfolio-page-root font-display">
     <!-- Hero -->
     <section
       ref="heroSectionRef"
@@ -107,7 +107,7 @@ onMounted(() => {
             class="min-w-[9rem] justify-center transition-transform active:scale-[0.98]"
             :class="
               link.variant === 'solid'
-                ? 'portfolio-btn-gradient-solid !text-[#0a0a0a] hover:!opacity-100'
+                ? 'portfolio-btn-gradient-solid hover:!opacity-100'
                 : 'portfolio-btn-gradient-outline !bg-transparent text-[var(--ui-text)] hover:!bg-transparent'
             "
           >
@@ -339,7 +339,7 @@ onMounted(() => {
               :to="`mailto:${site.email}?subject=${encodeURIComponent('Portfolio inquiry')}`"
               icon="i-lucide-mail"
               size="lg"
-              class="portfolio-btn-gradient-solid !text-[#0a0a0a] transition-transform hover:!opacity-100 active:scale-[0.98]"
+              class="portfolio-btn-gradient-solid transition-transform hover:!opacity-100 active:scale-[0.98]"
             >
               Email me
             </UButton>

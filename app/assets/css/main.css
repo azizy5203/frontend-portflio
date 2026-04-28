@@ -4,15 +4,43 @@
 
 :root {
   --portfolio-accent: #c4f542;
+  --portfolio-accent-secondary: #ff8c42;
+  --portfolio-on-accent: #0a1628;
   --portfolio-accent-muted: color-mix(in oklab, var(--portfolio-accent) 75%, white);
   --portfolio-surface: color-mix(in oklab, var(--ui-bg) 92%, var(--portfolio-accent) 8%);
   --portfolio-border-glow: color-mix(in oklab, var(--portfolio-accent) 35%, transparent);
 }
 
 .dark {
-  --portfolio-accent: #c4f542;
-  --portfolio-accent-muted: color-mix(in oklab, var(--portfolio-accent) 70%, #1a1a1a);
-  --portfolio-surface: color-mix(in oklab, var(--ui-bg) 94%, var(--portfolio-accent) 6%);
+  /* Deep navy / blue-purple shell */
+  --portfolio-bg-deep: #070b14;
+  --portfolio-bg-elevated: #0f1629;
+  --portfolio-bg-muted-layer: #121a2e;
+  --portfolio-accent: #cfff4a;
+  --portfolio-accent-secondary: #ff9f43;
+  --portfolio-on-accent: #0a0f1c;
+  --portfolio-accent-muted: color-mix(in oklab, var(--portfolio-accent) 22%, #5b21b6);
+  --portfolio-surface: color-mix(
+    in oklab,
+    var(--portfolio-bg-elevated) 88%,
+    color-mix(in oklab, var(--portfolio-accent) 40%, #7c3aed) 12%
+  );
+  --portfolio-border-glow: color-mix(in oklab, var(--portfolio-accent) 38%, #312e81 40%);
+  --ui-bg: var(--portfolio-bg-deep);
+  --ui-bg-muted: var(--portfolio-bg-muted-layer);
+  --ui-bg-elevated: var(--portfolio-bg-elevated);
+  --ui-bg-accented: color-mix(in oklab, var(--portfolio-bg-elevated) 70%, #1e1b4b 30%);
+  --ui-border: color-mix(in oklab, #312e81 55%, transparent);
+  --ui-border-muted: color-mix(in oklab, #1e1b4b 75%, transparent);
+  --ui-border-accented: color-mix(in oklab, var(--portfolio-accent-secondary) 28%, #312e81);
+  --ui-text-dimmed: #64748b;
+  --ui-text-muted: #94a3b8;
+  --ui-text-toned: #cbd5e1;
+  --ui-text: #e8edf7;
+  --ui-text-highlighted: #f8fafc;
+  --ui-text-inverted: var(--portfolio-on-accent);
+  --ui-primary: var(--portfolio-accent);
+  --ui-secondary: var(--portfolio-accent-secondary);
 }
 
 html {
@@ -53,16 +81,18 @@ html {
 
 .hero-typewriter-cursor {
   animation: hero-cursor-blink 1s step-end infinite;
+  text-shadow: 0 0 12px color-mix(in oklab, var(--portfolio-accent) 55%, transparent);
 }
 
 .portfolio-btn-gradient-solid {
   background: linear-gradient(
     135deg,
     var(--portfolio-accent) 0%,
-    color-mix(in oklab, var(--portfolio-accent) 65%, #7cb342) 45%,
-    color-mix(in oklab, var(--portfolio-accent) 80%, #e8f5a0) 100%
+    color-mix(in oklab, var(--portfolio-accent) 55%, var(--portfolio-accent-secondary)) 48%,
+    var(--portfolio-accent-secondary) 100%
   );
   background-size: 200% 200%;
+  color: var(--portfolio-on-accent);
   transition: background-position 0.35s ease, transform 0.2s ease, box-shadow 0.25s ease;
 }
 
@@ -70,7 +100,7 @@ html {
   background-position: 100% 50%;
   box-shadow:
     0 0 0 1px color-mix(in oklab, var(--portfolio-accent) 50%, transparent),
-    0 12px 32px color-mix(in oklab, var(--portfolio-accent) 35%, transparent);
+    0 12px 36px color-mix(in oklab, var(--portfolio-accent) 32%, var(--portfolio-accent-secondary) 18%);
 }
 
 .portfolio-btn-gradient-outline {
@@ -81,9 +111,9 @@ html {
     padding-box,
     linear-gradient(
       125deg,
-      color-mix(in oklab, var(--portfolio-accent) 70%, transparent),
-      color-mix(in oklab, var(--portfolio-accent) 40%, #6366f1),
-      color-mix(in oklab, var(--portfolio-accent) 55%, transparent)
+      color-mix(in oklab, var(--portfolio-accent) 72%, transparent),
+      color-mix(in oklab, var(--portfolio-accent-secondary) 65%, #6366f1),
+      color-mix(in oklab, var(--portfolio-accent) 50%, transparent)
     )
     border-box;
   border: 2px solid transparent;
@@ -91,5 +121,13 @@ html {
 }
 
 .portfolio-btn-gradient-outline:hover {
-  box-shadow: 0 8px 28px color-mix(in oklab, var(--portfolio-accent) 22%, transparent);
+  box-shadow:
+    0 8px 28px color-mix(in oklab, var(--portfolio-accent) 20%, transparent),
+    0 0 24px color-mix(in oklab, var(--portfolio-accent-secondary) 18%, transparent);
+}
+
+@media (max-width: 767.98px) {
+  .portfolio-page-root {
+    padding-bottom: calc(6.25rem + env(safe-area-inset-bottom, 0px));
+  }
 }

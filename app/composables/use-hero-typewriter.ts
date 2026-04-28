@@ -38,10 +38,19 @@ export interface UseHeroTypewriterParams {
 export function useHeroTypewriter(params: UseHeroTypewriterParams): void {
   const cps = params.cps ?? 28
   let timeline: gsap.core.Timeline | null = null
-  onMounted(() => {
+  function killAndClear(): void {
+    timeline?.kill()
+    timeline = null
+    const el = params.textContainerRef.value
+    if (el) {
+      el.textContent = ''
+    }
+  }
+  function runAnimation(): void {
     if (import.meta.server) {
       return
     }
+    killAndClear()
     const el = params.textContainerRef.value
     const fullText = toValue(params.fullAccent)
     if (!el || !fullText) {
@@ -49,7 +58,6 @@ export function useHeroTypewriter(params: UseHeroTypewriterParams): void {
     }
     const { typingPart } = parseHeroAccent(fullText)
     const chars = [...typingPart]
-    el.textContent = ''
     const fragment = document.createDocumentFragment()
     const charSpans: HTMLSpanElement[] = []
     for (const ch of chars) {
@@ -66,9 +74,21 @@ export function useHeroTypewriter(params: UseHeroTypewriterParams): void {
     charSpans.forEach((span, i) => {
       timeline!.to(span, { opacity: 1, duration: stepDuration }, i * stepDuration)
     })
+  }
+  onMounted(() => {
+    nextTick(() => {
+      runAnimation()
+    })
   })
+  watch(
+    () => toValue(params.fullAccent),
+    () => {
+      nextTick(() => {
+        runAnimation()
+      })
+    }
+  )
   onBeforeUnmount(() => {
-    timeline?.kill()
-    timeline = null
+    killAndClear()
   })
 }
